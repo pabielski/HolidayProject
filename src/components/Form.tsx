@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { ItemType } from "../../type";
+import { FormProps } from "../../type";
 
-type FormProps = {
-  onAddItems: (item: ItemType) => void;
-};
 export default function Form({ onAddItems }: FormProps) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

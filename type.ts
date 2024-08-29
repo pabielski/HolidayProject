@@ -4,3 +4,6 @@ export type ItemType = {
   quantity: number;
   packed: boolean;
 };
+export type FormProps = {
+  onAddItems: (item: ItemType) => void;
+};
