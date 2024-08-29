@@ -1,16 +1,6 @@
-export type Itemtype = {
-  id: number;
-  description: string;
-  quantity: number;
-  packed: boolean;
-};
-const initialItems: Itemtype[] = [
-  { id: 1, description: "Paszport", quantity: 1, packed: false },
-  { id: 2, description: "skarpetki", quantity: 12, packed: true },
-  { id: 3, description: "ładowarka", quantity: 1, packed: false },
-];
+import { ItemType } from "../../type";
 
-function Item({ item }: { item: Itemtype }) {
+function Item({ item }: { item: ItemType }) {
   return (
     <li>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
@@ -20,11 +10,11 @@ function Item({ item }: { item: Itemtype }) {
     </li>
   );
 }
-export default function PackingList() {
+export default function PackingList({ items: items }: { items: ItemType[] }) {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
+        {items.map((item) => (
           <Item item={item} key={item.id} />
         ))}
       </ul>

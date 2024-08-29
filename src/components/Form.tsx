@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Itemtype } from "../components/Packinglist";
+import { ItemType } from "../../type";
 
-export default function Form() {
+type FormProps = {
+  onAddItems: (item: ItemType) => void;
+};
+export default function Form({ onAddItems }: FormProps) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -9,13 +12,14 @@ export default function Form() {
       alert("Dodaj itemasek jakiś plz");
       return;
     }
-    const newItem: Itemtype = {
+    const newItem: ItemType = {
       description,
       quantity,
       packed: false,
       id: Date.now(),
     };
     console.log(newItem);
+    onAddItems(newItem);
     setDescription("");
     setQuantity(1);
   }
