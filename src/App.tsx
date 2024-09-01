@@ -8,6 +8,14 @@ import { ItemType } from "../type";
 
 function App() {
   const [items, setItems] = useState<ItemType[]>([]);
+
+  function handleCheckboxChange(id: number) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
   function handleAddItems(item: ItemType) {
     setItems((items) => [...items, item]);
   }
@@ -18,8 +26,12 @@ function App() {
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} onDeleteItem={handleDeleteItem} />
-      <Stats />
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onCheckboxChange={handleCheckboxChange}
+      />
+      <Stats items={items} />
     </div>
   );
 }
